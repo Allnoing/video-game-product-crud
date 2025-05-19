@@ -43,6 +43,7 @@ This project is a simple product management system that allows users to view, ed
   - Validates and sanitizes the input data.
   - Updates the product record in the database with the new values.
   - Redirects the user back to `product_list.php` upon successful update.
+  - Outputs an error message if the update fails.
 - **How to Use**: This file is called when the form in `edit_product.php` is submitted. It should not be accessed directly.
 
 ---
@@ -51,15 +52,34 @@ This project is a simple product management system that allows users to view, ed
 - **Purpose**: Establishes a connection to the MySQL database.
 - **Functionality**:
   - Contains the database connection logic using PHP's `mysqli` extension.
-  - This file is included in other files (e.g., `product_list.php`, `edit_product.php`, `edit_product_db.php`) to enable database operations.
+  - Defines constants for database credentials (`DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`).
+  - Creates a `$conn` object for database operations.
+  - Outputs an error message if the connection fails.
 - **How to Use**: Include this file in any PHP script that requires a database connection.
+
+---
+
+### 6. `product_db.sql`
+- **Purpose**: Contains the SQL script to create and populate the `products` database table.
+- **Functionality**:
+  - Creates the `products` table with the following fields:
+    - `product_id`: Primary key, auto-incremented integer.
+    - `product_code`: A unique code for the product.
+    - `product_name`: The name of the product.
+    - `description`: A text description of the product.
+    - `list_price`: The price of the product.
+    - `discount_percent`: The discount percentage for the product.
+  - Inserts sample data into the `products` table.
+- **How to Use**:
+  1. Import this file into your MySQL database using a tool like phpMyAdmin or the MySQL command line.
+  2. Ensure the database name matches the one defined in `mysqli_connection.php`.
 
 ---
 
 ## How to Run the Project
 1. Place all files in the `htdocs` directory of your XAMPP installation (e.g., `c:\xampp\htdocs\product_website`).
 2. Start the Apache and MySQL services in XAMPP.
-3. Import the database schema and data into your MySQL server.
+3. Import the `product_db.sql` file into your MySQL server to create and populate the database.
 4. Open `product_list.php` in your browser to view the product list and start interacting with the application.
 
 ---
@@ -67,6 +87,7 @@ This project is a simple product management system that allows users to view, ed
 ## Notes
 - Ensure that the database connection details in `mysqli_connection.php` are correct.
 - The project uses Bootstrap for styling, so an internet connection is required to load the Bootstrap CSS from the CDN.
+- The sample data in `product_db.sql` includes a variety of products for testing purposes.
 
 ---
 
